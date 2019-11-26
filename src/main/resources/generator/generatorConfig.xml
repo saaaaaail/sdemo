@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 导入配置文件 -->
+    <properties resource="application.properties"/>
+
+    <!-- defaultModelType="flat" 设置复合主键时不单独为主键创建实体 -->
+    <context id="MySql" defaultModelType="flat">
+
+        <!-- 生成的POJO实现java.io.Serializable接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin"/>
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+
+        <!--注释-->
+        <commentGenerator>
+            <!-- 将数据库中表的字段描述信息添加到注释 -->
+            <property name="addRemarkComments" value="true"/>
+            <!-- 注释里不添加日期 -->
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接，直接通过${}读取application.properties里的配置 -->
+        <jdbcConnection
+                driverClass="${spring.datasource.driverClassName}"
+                connectionURL="${spring.datasource.url}"
+                userId="${spring.datasource.username}"
+                password="${spring.datasource.password}"/>
+
+        <!-- 生成POJO对象，并将类放到com.iqiyi.intl.translate.model包下 -->
+        <javaModelGenerator targetPackage="com.example.sdemo.entity"
+                            targetProject="src/main/java"></javaModelGenerator>
+        <!-- 生成mapper xml文件，并放到resources下的mapper文件夹下 -->
+        <sqlMapGenerator targetPackage="/com/example/sdemo/mapper"
+                         targetProject="src/main/resources"></sqlMapGenerator>
+
+
+        <!-- 生成mapper xml对应dao接口，放到com.songguoliang.springboot.mapper包下-->
+        <javaClientGenerator targetPackage="com.example.sdemo.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"></javaClientGenerator>
+
+        <!--table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 -->
+        <!--<table tableName="subtitle" domainObjectName="Subtitle" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+
+        <!--<columnOverride column="source" javaType="java.lang.Integer"/>-->
+        <!--<columnOverride column="subtitle_type" javaType="java.lang.Integer"/>-->
+        <!--<columnOverride column="is_deleted" javaType="java.lang.Integer"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="subtitle_style" domainObjectName="SubtitleStyle" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+
+        <!--<table tableName="subtitle_dialogue" domainObjectName="SubtitleDialogue"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+
+        <!--<table tableName="translate_project" domainObjectName="TranslateProject" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+        <!--<table tableName="translate_sub_task" domainObjectName="TranslateSubTask" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+        <!--<table tableName="translate_sub_task_detail" domainObjectName="TranslateSubTaskDetail"-->
+        <!--enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--<columnOverride column="status" javaType="java.lang.Integer"/>-->
+        <!--</table>-->
+        <!--<table tableName="translate_task" domainObjectName="TranslateTask" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+        <!--<table tableName="media_project" domainObjectName="MediaProject" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+        <!--<table tableName="translate_task" domainObjectName="TranslateTask" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+        <!--<table tableName="video" domainObjectName="Video">-->
+
+        <!--<table tableName="media_project" domainObjectName="MediaProject" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+        <!--<table tableName="video" domainObjectName="Video">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="modelOnly" value="false"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<generatedKey column="id" sqlStatement="MySql" identity="true"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<domainObjectRenamingRule searchString="^t" replaceString=""/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</table>&ndash;&gt;-->
+        <!--&lt;!&ndash;<table tableName="video" domainObjectName="Video">&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;&ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--</table>-->
+        <!--<table tableName="lang" domainObjectName="Lang">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--<columnOverride column="is_han" javaType="java.lang.Integer"/>-->
+        <!--</table>-->
+        <!--<table tableName="lang" domainObjectName="Lang">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt;-->
+        <!--<domainObjectRenamingRule searchString="^t" replaceString=""/>-->
+        <!--<columnOverride column="is_han" javaType="java.lang.Integer"/>-->
+
+        <!--</table>-->
+        <!--<table tableName="media_resource" domainObjectName="MediaResource" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--<columnOverride column="resource_type" javaType="java.lang.Integer"/>-->
+        <!--<columnOverride column="is_deleted" javaType="java.lang.Integer"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="statistics_translate_duration" domainObjectName="TranslateDuration"-->
+        <!--enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+
+
+        <!--<table tableName="statistics_translate_error" domainObjectName="TranslateError" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="translate_partner" domainObjectName="TranslatePartner" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+<!--        <table tableName="admin_user" domainObjectName="AdminUser" enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
+<!--            <property name="modelOnly" value="false"/>-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true" />-->
+<!--        </table>-->
+        <table tableName="comment" domainObjectName="Comment" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">
+            <property name="modelOnly" value="false"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+
+        <!--<table tableName="proper_database" domainObjectName="ProperDatabase" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+        <!--<table tableName="proper_word" domainObjectName="ProperWord" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<columnOverride column="is_deleted" javaType="java.lang.Integer"></columnOverride>-->
+        <!--</table>-->
+        <!--<table tableName="proper_word_translate" domainObjectName="ProperWordTranslate" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="translate_partner_lang" domainObjectName="TranslatePartnerLang" enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="translate_task_style" domainObjectName="TranslateTaskStyle" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="modelOnly" value="false"/>-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
+    </context>
+</generatorConfiguration>

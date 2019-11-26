@@ -1,5 +1,11 @@
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-    <kbase name="rules" packages="rules">
-        <ksession name="ksession-rules"/>
+    <kbase name="prize-rules" packages="rules.prize">
+        <ksession name="ksession-prize" type="stateless"/>
+    </kbase>
+    <kbase name="admission-rules" packages="rules.admission">
+        <ksession name="ksession-admission" type="stateless"/>
+    </kbase>
+    <kbase name="activity-rules" packages="rules.activity">
+        <ksession name="ksession-activity" type="stateless"/>
     </kbase>
 </kmodule>

@@ -1,0 +1,57 @@
+package com.example.sdemo;
+
+import com.example.sdemo.entity.Participant;
+import java.util.Date;
+
+
+
+rule "admission_start_time"
+    no-loop true
+    lock-on-active true
+    salience 2
+
+when
+
+    $Participant : Participant(registerTime<"20-Aug-2019");//dd-MM-yyyy
+then
+    $Participant.setPass(false);
+    $Participant.setMessage("活动开始前注册的用户无法参与活动");
+    update($Participant);
+end
+
+rule "admission_new_inviter"
+    no-loop true
+    lock-on-active true
+    salience 2
+
+when
+    $Participant : Participant(isNewInviter==1);//dd-MM-yyyy
+then
+    $Participant.setPass(false);
+    $Participant.setMessage("用户已经成为了邀请者");
+    update($Participant);
+end
+
+rule "admission_new_invitee"
+    no-loop true
+    lock-on-active true
+    salience 2
+when
+    $Participant : Participant(isNewInvitees == 1);//dd-MM-yyyy
+then
+    $Participant.setPass(false);
+    $Participant.setMessage("用户已经成为了被邀请者");
+    update($Participant);
+end
+
+rule "admission_pass"
+    no-loop true
+    lock-on-active true
+    salience 1
+when
+    $Participant : Participant(isNewInvitees == 0 && isNewInviter == 0 && registerTime>="20-Aug-2019");//dd-MM-yyyy
+then
+    $Participant.setPass(true);
+    $Participant.setMessage("用户可以参与活动");
+    update($Participant);
+end

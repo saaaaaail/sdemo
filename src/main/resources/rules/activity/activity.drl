@@ -1,0 +1,40 @@
+package com.example.sdemo;
+
+import com.example.sdemo.dto.ActivityDto;
+import java.util.Date;
+
+rule "activity_start_time"
+    no-loop true
+    lock-on-active true
+    salience 1
+when
+    $ActivityDto:ActivityDto(startTime > new Date());
+then
+    $ActivityDto.setPass(false);
+    $ActivityDto.setMessage("活动还没开始");
+    update($ActivityDto);
+end
+
+rule "activity_end_time"
+    no-loop true
+    lock-on-active true
+    salience 1
+when
+    $ActivityDto:ActivityDto(endTime<new Date());
+then
+    $ActivityDto.setPass(false);
+    $ActivityDto.setMessage("活动已经结束");
+    update($ActivityDto);
+end
+
+rule "activity_"
+    no-loop true
+    lock-on-active true
+    salience 1
+when
+    $ActivityDto:ActivityDto($Date:new Date() && endTime>=$Date && $Date>=startTime);
+then
+    $ActivityDto.setPass(true);
+    $ActivityDto.setMessage("活动中");
+    update($ActivityDto);
+end

@@ -21,13 +21,13 @@ public class Participant {
 
     private Long deviceId;
 
-    private Integer isInviter;
+    private Integer isNewInviter;
 
     private Integer succeedCount;
 
     private List<Long> slaveIdList;//活动参与者id与设备id
 
-    private Integer isInvitees;
+    private Integer isNewInvitees;
 
     private Long masterId;
 
@@ -36,6 +36,10 @@ public class Participant {
     private Integer prizeDays;
 
     private Date registerTime;
+
+    private boolean pass;//1有资格 0无
+
+    private String message;//反馈信息
 
     public Participant(){}
 }
